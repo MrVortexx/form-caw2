@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+     
+    
+</head>
+<body id="body">
+    <form >
+        <h2>Adicione suas tarefas!</h2>
+            <label for="element">Tarefa</label>
+            <input type="text" name="element" >
+        
+            <button id="submit" class="btn" type="submit">adicionar </button>
+            <button class="btn" id="reset">Limpar</button>
+    </form>
+    <ul id = "list">
+
+    </ul>
+
+<script>
+    const list = document.getElementById('list')
+
+    const newListElement = (value) => `<li> ${value} </li>`
+     
+
+    function validateForm(element){
+        if (element.value == "" ){
+            alert("Preencha o campo por favor")
+            return -1;
+        }
+    }
+    function addElement(element, list){
+            if (element.value == ""){
+                alert("cannot add a empty element to list")
+                return -1;
+            }  
+       list.insertAdjacentHTML('beforeEnd', newListElement(element.value))
+       element.value= ""
+    }  
+
+    const subs = document.getElementById('submit');
+    subs.onclick = (e) =>{
+        e.preventDefault()
+        element = document.querySelector('[name = element]')
+        if ( validateForm(element) == -1) return -1
+
+        addElement(element, list)
+    }
+    const reset = document.getElementById('reset');
+    reset.onclick = (e)=>{
+        list.innerHTML = ""
+    }
+
+</script>
+
+</body>
+</html>
